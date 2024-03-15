@@ -1,19 +1,14 @@
 import React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import Note from "./Note";
 
 function App() {
   return (
     <div >
-      <header>
-        <h1>keeper</h1>
-      </header>
-      <form>
-        <input type="text" placeholder="Title" /><br />
-        <input type="text" placeholder="Content" /><br />
-        <button>Save</button>
-      </form>
-      <footer>
-        @eliyas
-      </footer>
+      <Header />
+      <Note />
+      <Footer />
     </div>
   );
 }
