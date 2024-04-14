@@ -6,7 +6,7 @@ import notes from "../Note";
 
 function App() {
   return (
-    <div >
+    <div className="container">
       <Header />
       <Note />
      

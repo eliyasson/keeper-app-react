@@ -1,26 +1,34 @@
 import React, {useState} from "react";
+import Todo from "./Todo";
 
 
-function Note(props) {
-  const [fullName, setFullName] = useState({
+function Note() {
+  const [inputItems, setInputItems] = useState("");
+  const [addItem, setAddItem] = useState([]);
+
+ /*  const [fullName, setFullName] = useState({
     fname: "",
     lname: "",
     email: ""
-  });
+  }); */
 
     function handleChange(event) {
-        const {value, name} = event.target;
 
+      setInputItems(event.target.value);
+
+      //const {value, name} = event.target;
       //const newValue = event.target.value;
       //const inputName = event.target.name;
-      
-      setFullName(prevValue => {
+    
+      /* setFullName(prevValue => {
         return {
             ...prevValue,
         [name]: value
         }
       })
-
+      
+ */
+     
       /* setFullName(prevValue => {
         if(name === "fname") {
             return {
@@ -40,36 +48,28 @@ function Note(props) {
         }
       }); */
     }
+    function addItems() {
+      setAddItem((prevValue) => {
+        return [...prevValue, inputItems]
+      })
+      setInputItems("");
+    }
+ 
     return (
-        <div className="container">
-            <h1>Todo List</h1>
-            
-            <form  className="form">
-                <input 
-                    name="fname" 
-                    onChange={handleChange}  type="text" 
-                    placeholder="First Name"  
-                    value={fullName.fname}
-                />
-
-                <input 
-                    onChange={handleChange} 
-                    name="lname" type="text" 
-                    placeholder="Last Name" 
-                    value={fullName.lname}
-                />
-                <input 
-                    onChange={handleChange} 
-                    name="email" type="text" 
-                    placeholder="Email" 
-                    value={fullName.email}
-                />
-
-                <button type="submit">Submit</button>
-            </form>
-            <h2>Hello, {fullName.fname} {fullName.lname}</h2>
-            <h3>{fullName.email}</h3>
-          
+        <div>
+         
+          <div className="form">
+            <input name="list" 
+              onChange={handleChange}  type="text" 
+            value={inputItems}
+            />
+            <button onClick={addItems} type="submit"><span>Add</span></button>
+          </div>
+          <ul>
+            {addItem.map(item => (
+               <Todo text={item}/>
+            ))}
+          </ul>
         </div>
     )
 }
