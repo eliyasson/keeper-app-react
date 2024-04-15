@@ -54,7 +54,15 @@ function Note() {
       })
       setInputItems("");
     }
- 
+    
+    function deleteItem(id) {
+      setAddItem(prevValue => {
+        return prevValue.filter((item, index) => {
+          return index !== id;
+        })
+      })
+    }
+   
     return (
         <div>
          
@@ -66,8 +74,13 @@ function Note() {
             <button onClick={addItems} type="submit"><span>Add</span></button>
           </div>
           <ul>
-            {addItem.map(item => (
-               <Todo text={item}/>
+            {addItem.map((item, index) => (
+              <Todo 
+                key={index} 
+                id={index} 
+                text={item}
+                onChecked={deleteItem}
+              />
             ))}
           </ul>
         </div>
