@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import Todo from "./Todo";
+import InputItem from "./input";
+
 
 
 function Note() {
@@ -56,23 +58,19 @@ function Note() {
     }
     
     function deleteItem(id) {
-      setAddItem(prevValue => {
-        return prevValue.filter((item, index) => {
-          return index !== id;
-        })
-      })
+      setAddItem(prevValue => prevValue.filter((item, index) => index !== id));
+     
     }
    
     return (
         <div>
-         
-          <div className="form">
-            <input name="list" 
-              onChange={handleChange}  type="text" 
-            value={inputItems}
-            />
-            <button onClick={addItems} type="submit"><span>Add</span></button>
-          </div>
+          <InputItem
+            handleChange={handleChange}
+            inputItems = {inputItems}
+            addItems = {addItems}
+          
+          />
+          
           <ul>
             {addItem.map((item, index) => (
               <Todo 
@@ -83,6 +81,7 @@ function Note() {
               />
             ))}
           </ul>
+        
         </div>
     )
 }
