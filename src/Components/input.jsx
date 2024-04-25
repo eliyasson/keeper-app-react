@@ -1,6 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
-function InputItem( {handleChange, inputItems, addItems}) {
+function InputItem(props) {
+
+    const [inputItems, setInputItems] = useState("");
+
+    function handleChange(event) {
+        setInputItems(event.target.value);
+    }
+
     return (
         <div className="form">
             <input name="list" 
@@ -9,8 +16,11 @@ function InputItem( {handleChange, inputItems, addItems}) {
                 value={inputItems}
             />
             <button 
-                onClick={addItems} 
-                type="submit">
+                onClick={()=> {
+                    props.addItems(inputItems);
+                     setInputItems("");
+                } }
+                    type="submit">
                 <span>Add</span>
             </button>
         </div>

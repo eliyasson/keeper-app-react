@@ -3,58 +3,16 @@ import Todo from "./Todo";
 import InputItem from "./input";
 
 
-
 function Note() {
-  const [inputItems, setInputItems] = useState("");
+
   const [addItem, setAddItem] = useState([]);
 
- /*  const [fullName, setFullName] = useState({
-    fname: "",
-    lname: "",
-    email: ""
-  }); */
 
-    function handleChange(event) {
-
-      setInputItems(event.target.value);
-
-      //const {value, name} = event.target;
-      //const newValue = event.target.value;
-      //const inputName = event.target.name;
-    
-      /* setFullName(prevValue => {
-        return {
-            ...prevValue,
-        [name]: value
-        }
-      })
-      
- */
-     
-      /* setFullName(prevValue => {
-        if(name === "fname") {
-            return {
-                ...prevValue,
-                fname: value 
-            }
-        } else if (name === "lname") {
-            return {
-                ...prevValue,
-                lname: value
-            }
-        } else if (name === "email") {
-            return {
-                ...prevValue,
-                email: value
-            }
-        }
-      }); */
-    }
-    function addItems() {
+    function addItems(inputItems) {
       setAddItem((prevValue) => {
         return [...prevValue, inputItems]
       })
-      setInputItems("");
+      
     }
     
     function deleteItem(id) {
@@ -64,13 +22,10 @@ function Note() {
    
     return (
         <div>
-          <InputItem
-            handleChange={handleChange}
-            inputItems = {inputItems}
-            addItems = {addItems}
-          
+          <InputItem 
+            
+           addItems={addItems}
           />
-          
           <ul>
             {addItem.map((item, index) => (
               <Todo 
@@ -81,7 +36,15 @@ function Note() {
               />
             ))}
           </ul>
-        
+          <div className="todo-item">
+            <span
+                className="todo-text"
+      
+            >
+                
+            </span>
+           
+        </div>
         </div>
     )
 }
